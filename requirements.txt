@@ -3,4 +3,3 @@ transformers
 torch
 pydantic
 sentence-transformers
-asgi_to_wsgi
