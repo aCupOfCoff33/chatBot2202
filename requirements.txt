@@ -1,0 +1,6 @@
+fastapi
+transformers
+torch
+pydantic
+sentence-transformers
+uvicorn
