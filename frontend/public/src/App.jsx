@@ -1,4 +1,4 @@
-// src/App.jsx
+// frontend/src/App.jsx
 import React, { useState, useEffect, useRef } from "react";
 
 const App = () => {
@@ -48,8 +48,8 @@ const App = () => {
       console.log("Sending history to backend:", currentHistory);
       console.log("Current mode:", mode);
 
-      // Make a POST request to the backend API using the environment variable
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat`, {
+      // Make a POST request to the backend API
+      const response = await fetch(import.meta.env.VITE_API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -194,8 +194,8 @@ const App = () => {
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             {mode === "experts"
-              ? "Converse with AI Expert"
-              : "Let the Experts Talk"}
+              ? "Switch to Expert Interaction"
+              : "Switch to Expert Mode"}
           </button>
         </div>
 
@@ -213,8 +213,8 @@ const App = () => {
               {/* Expert 1 Avatar */}
               {msg.sender === "Expert 1" && (
                 <img
-                  src="/images/prof.JPG" // Updated path
-                  alt="Dr. Yimin Yang"
+                  src="/src/images/prof.JPG"
+                  alt="Expert 1"
                   className="w-10 h-10 rounded-full mr-2"
                 />
               )}

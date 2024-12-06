@@ -1,6 +1,4 @@
 # api/chat.py
-import signal
-import sys
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
@@ -8,18 +6,21 @@ import torch
 from pydantic import BaseModel
 from typing import Optional
 from sentence_transformers import SentenceTransformer, util
-from mangum import Mangum  # Import Mangum
+from asgi_to_wsgi import ASGIMiddleware
+import sys
+import signal
+import os
 
 # Initialize the FastAPI application
 app = FastAPI()
 
-# Configure CORS to allow only your frontend's Vercel domain
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend-domain.vercel.app"],  # Replace with your actual frontend URL
+    allow_origins=["*"],  # Restrict to your frontend domain in production
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods (e.g., GET, POST)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Define phrases that should be filtered out as bad responses
@@ -89,6 +90,7 @@ else:  # Use CPU otherwise
     ).to(device)
 print("Model loaded successfully.")
 
+
 def is_repeated_idea(response, history):
     """
     Check if the newly generated response is semantically similar to any prior responses in the chat history.
@@ -111,6 +113,7 @@ def is_repeated_idea(response, history):
         print(f"Rejected response as repeated idea (similarity={max_similarity:.2f}): {response}")
         return True
     return False
+
 
 def generate_response(prompt, max_length=150, temperature=0.8, top_p=0.9, no_repeat_ngram_size=3):
     """
@@ -135,12 +138,14 @@ def generate_response(prompt, max_length=150, temperature=0.8, top_p=0.9, no_rep
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return response.strip()
 
+
 class ChatHistory(BaseModel):
     """
     Pydantic model for validating the chat history received in POST requests.
     """
     history: str  # The conversation history
     mode: Optional[str] = "experts"  # The current mode (default: "experts")
+
 
 def determine_current_speaker(history: str, mode: str) -> Optional[str]:
     """
@@ -163,6 +168,7 @@ def determine_current_speaker(history: str, mode: str) -> Optional[str]:
             return "Expert 1"  # Default to Expert 1
     else:
         return None  # Invalid mode
+
 
 @app.post("/chat")
 def chat(data: ChatHistory):
@@ -236,11 +242,17 @@ def chat(data: ChatHistory):
     print(f"Returning response: {response_clean}")
     return {"response": response_clean}
 
-# Remove signal handling as it's not needed in serverless
 
-# Remove the traditional server run
-# if __name__ == "__main__":
-#     uvicorn.run("chat:app", host="0.0.0.0", port=8000, reload=False)
+# Graceful shutdown handling
+def signal_handler(signal, frame):
+    print("\nShutting down FastAPI server...")
+    sys.exit(0)
 
-# Add Mangum handler for Vercel
-handler = Mangum(app)
+
+signal.signal(signal.SIGINT, signal_handler)
+
+# Adapt FastAPI to WSGI using asgi_to_wsgi
+wsgi_app = ASGIMiddleware(app)
+
+def handler(environ, start_response):
+    return wsgi_app(environ, start_response)

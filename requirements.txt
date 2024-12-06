@@ -1,7 +1,6 @@
 fastapi
-uvicorn
 transformers
 torch
 pydantic
 sentence-transformers
-mangum
+asgi_to_wsgi

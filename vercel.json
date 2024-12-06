@@ -1,19 +1,25 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "api/chat.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "100mb" }
-      },
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "dist" }
-      }
-    ],
-    "routes": [
-      { "src": "/api/chat", "dest": "/api/chat.py" },
-      { "src": "/(.*)", "dest": "/index.html" }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "frontend/dist" }
+    },
+    {
+      "src": "api/chat.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "100mb" }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/chat",
+      "dest": "/api/chat.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/dist/index.html"
+    }
+  ]
+}
