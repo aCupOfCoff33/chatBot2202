@@ -78,3 +78,44 @@ This application is an **AI-powered conversational tool** designed to simulate a
    ```bash
    git clone https://github.com/your-username/ai-expert-chat.git
    cd ai-expert-chat
+   ```
+2. **Install backend dependencies**:
+   ```bash
+   cd api
+   pip install -r requirements.txt
+   ```
+3. **Start the Backend Server**:
+   ```bash
+   uvicorn chat:app --reload
+   ```
+4. **Install frontend dependencies**:
+   ```bash
+   cd ../frontend
+   npm install
+   ```
+5. **Start the frontend server**:
+   ```bash
+   npm run dev
+   ```
+6. Access the app:
+Open your browser and navigate to http://localhost:5173/
+
+---
+## 🤖 How It Works
+
+1. **AI-Only Mode**  
+   The backend uses pre-trained NLP models to generate a live discussion between two AI experts. The frontend fetches and displays these responses in real-time.
+
+2. **User Interaction Mode**  
+   Users can join as Expert 2 by typing their responses. The backend processes user input and generates a reply from Expert 1, keeping the conversation natural and engaging.
+
+3. **Repetition Avoidance**  
+   Responses are filtered to avoid redundancy using semantic similarity checks and a predefined list of “bad responses.”
+
+---
+
+## 🧪 Future Enhancements
+
+- Support for additional discussion topics.
+- More diverse AI expert profiles.
+- Option to download conversation history as a transcript.
