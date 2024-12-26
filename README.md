@@ -1,4 +1,4 @@
-# 🧠 AI Expert Chat: Preventing Bullying in Classrooms
+![Screenshot 2024-12-26 at 6 09 35 PM](https://github.com/user-attachments/assets/1dcef651-5fe3-4053-a664-3955688f5c5b)# 🧠 AI Expert Chat: Preventing Bullying in Classrooms
 
 This application is an **AI-powered conversational tool** designed to simulate and manage insightful discussions between two "experts" about strategies to prevent bullying in classrooms. It allows users to either observe a live AI-generated discussion or participate as one of the experts, providing actionable insights on this critical topic.
 
@@ -35,16 +35,13 @@ This application is an **AI-powered conversational tool** designed to simulate a
 ## 🖼️ Screenshots
 
 1. **Landing Page (Greeting Modal)**  
-   *Include a screenshot of the greeting modal explaining the app’s purpose.*
+![Screenshot 2024-12-26 at 6 09 35 PM](https://github.com/user-attachments/assets/154c2597-24e7-4224-98fd-b802cbf9a9a1)
 
-2. **AI-Only Mode Conversation**  
-   *Include a screenshot of a conversation between Expert 1 and Expert 2 in AI-only mode.*
+2. **AI-Only Mode Conversation**!
+[Screenshot 2024-12-26 at 6 19 38 PM](https://github.com/user-attachments/assets/be986811-ba63-4dee-b934-44b92904dc28)
 
-3. **User Interaction Mode**  
-   *Include a screenshot of the user acting as Expert 2, contributing to the discussion.*
-
-4. **Mode Toggle Button**  
-   *Include a screenshot showing the toggle button to switch between AI-only and User Interaction modes.*
+4. **User Interaction Mode**  
+![Screenshot 2024-12-26 at 6 20 22 PM](https://github.com/user-attachments/assets/a57611b5-3bf6-4cbf-9c72-fbecea203483)
 
 ---
 
