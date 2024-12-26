@@ -35,11 +35,14 @@ This application is an **AI-powered conversational tool** designed to simulate a
 ## 🖼️ Screenshots
 
 
-![1. **Landing Page (Greeting Modal)**](https://github.com/user-attachments/assets/154c2597-24e7-4224-98fd-b802cbf9a9a1)
+1. **Landing Page (Greeting Modal)**  
+![](https://github.com/user-attachments/assets/154c2597-24e7-4224-98fd-b802cbf9a9a1)
 
-![2. **AI-Only Mode Conversation**](https://github.com/user-attachments/assets/be986811-ba63-4dee-b934-44b92904dc28)
+2. **AI-Only Mode Conversation**!
+![](https://github.com/user-attachments/assets/be986811-ba63-4dee-b934-44b92904dc28)
 
-![3. **User Interaction Mode**](https://github.com/user-attachments/assets/a57611b5-3bf6-4cbf-9c72-fbecea203483)
+3. **User Interaction Mode**  
+![](https://github.com/user-attachments/assets/a57611b5-3bf6-4cbf-9c72-fbecea203483)
 
 ---
 
